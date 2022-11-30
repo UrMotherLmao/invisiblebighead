@@ -1,0 +1,22 @@
+function getplrsname()
+	for i,v in pairs(game:GetChildren()) do
+		if v.ClassName == "Players" then
+			return v.Name
+		end
+	end
+end
+local players = getplrsname()
+
+coroutine.resume(coroutine.create(function()
+	while wait(0.1) do
+		coroutine.resume(coroutine.create(function()
+		    for _,v in pairs(game[players]:GetPlayers()) do
+		    	if v.Character.Head.Mesh.MeshId == "" then
+		             v.Character.Head.Mesh.MeshType = "FileMesh"
+				v.Character.Head.Mesh.MeshId = "rbxassetid://5591363797"
+				v.Character.Head.Mesh.Scale = Vector3.new(1,1,1)
+		    	end
+		    	end
+		end))
+	end
+end))
